@@ -1,19 +1,18 @@
-package domain;
+package com.barbearia.domain;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-import org.springframework.data.annotation.Id;
-
+import com.barbearia.enums.Servicos;
+import com.barbearia.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
 
-import enums.Servico;
-import enums.Status;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.validation.constraints.NotNull;
@@ -24,33 +23,29 @@ public class Agendamento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	protected Integer id;
-	
-	protected String observacao;
 	@JsonFormat(pattern = "dd/MM/yyyy")
 	protected LocalDate dataCriacao = LocalDate.now();
 	@JsonFormat(pattern = "dd/MM/yyyy HH:mm")
 	protected LocalDateTime dataAgendamento;
-	@NotNull
-	@Enumerated(EnumType.STRING)
-	protected Servico servico;
-	@ManyToOne
-	@JoinColumn(name = "barbeiro_id")
-	protected Barbeiro barbeiro;
+	protected String observacoes;
 	@ManyToOne
 	@JoinColumn(name = "cliente_id")
 	protected Cliente cliente;
+	@ManyToOne
+	@JoinColumn(name = "barbeiro_id")
+	protected Barbeiro barbeiro;
+	@NotNull
+	protected Servicos servico;
 	@Enumerated(EnumType.STRING)
 	protected Status status;
 	
-	public Agendamento() {}
-	
-	public Agendamento(String observacoes, LocalDateTime dataAgendamento, Servico servico, Barbeiro barbeiro, Cliente cliente, Status status) {
-		this.observacao = observacoes;
+	public Agendamento(LocalDateTime dataAgendamento, String observacoes, Cliente cliente, Barbeiro barbeiro, Servicos servico, Status status) {
 		this.dataAgendamento = dataAgendamento;
-		this.servico = servico;
-		this.barbeiro = barbeiro;
+		this.observacoes = observacoes;
 		this.cliente = cliente;
-		this.status = status;
+		this.barbeiro = barbeiro;
+		this.servico = servico;
+		this.status = Status.PENDENTE;
 	}
 
 	public Integer getId() {
@@ -59,14 +54,6 @@ public class Agendamento {
 
 	public void setId(Integer id) {
 		this.id = id;
-	}
-
-	public String getObservacao() {
-		return observacao;
-	}
-
-	public void setObservacao(String observacao) {
-		this.observacao = observacao;
 	}
 
 	public LocalDate getDataCriacao() {
@@ -85,20 +72,12 @@ public class Agendamento {
 		this.dataAgendamento = dataAgendamento;
 	}
 
-	public Servico getServico() {
-		return servico;
+	public String getObservacoes() {
+		return observacoes;
 	}
 
-	public void setServico(Servico servico) {
-		this.servico = servico;
-	}
-
-	public Barbeiro getBarbeiro() {
-		return barbeiro;
-	}
-
-	public void setBarbeiro(Barbeiro barbeiro) {
-		this.barbeiro = barbeiro;
+	public void setObservacoes(String observacoes) {
+		this.observacoes = observacoes;
 	}
 
 	public Cliente getCliente() {
@@ -109,6 +88,22 @@ public class Agendamento {
 		this.cliente = cliente;
 	}
 
+	public Barbeiro getBarbeiro() {
+		return barbeiro;
+	}
+
+	public void setBarbeiro(Barbeiro barbeiro) {
+		this.barbeiro = barbeiro;
+	}
+
+	public Servicos getServico() {
+		return servico;
+	}
+
+	public void setServico(Servicos servico) {
+		this.servico = servico;
+	}
+
 	public Status getStatus() {
 		return status;
 	}
@@ -116,6 +111,4 @@ public class Agendamento {
 	public void setStatus(Status status) {
 		this.status = status;
 	}
-	
-	
 }

@@ -1,16 +1,14 @@
-package enums;
+package com.barbearia.enums;
 
-public enum Servico {
+public enum Status {
 
-	CABELO_SOCIAL(0, "ROLE CABELO_SOCIAL"),
-	CABELO_DEGRADE(1, "ROLE CABELO_DEGRADE"),
-	BARBA(2, "ROLE BARBA"),
-	SOBRANCELHA(3, "ROLE SOBRANCELHA");
+	PENDENTE(0, "ROLE PENDENTE"),
+	CONCLUIDO(1, "ROLE CONCLUIDO");
 	
 	private Integer codigo;
 	private String descricao;
 	
-	private Servico(Integer codigo, String descricao) {
+	private Status(Integer codigo, String descricao) {
 		this.codigo = codigo;
 		this.descricao = descricao;
 	}
@@ -29,5 +27,5 @@ public enum Servico {
 
 	public void setDescricao(String descricao) {
 		this.descricao = descricao;
-	}
+	}	
 }

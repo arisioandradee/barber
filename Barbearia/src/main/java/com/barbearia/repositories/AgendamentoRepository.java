@@ -1,11 +1,9 @@
-package repository;
+package com.barbearia.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
 
-import domain.Agendamento;
+import com.barbearia.domain.Agendamento;
 
-@Repository
 public interface AgendamentoRepository extends JpaRepository<Agendamento, Integer>{
 
 }

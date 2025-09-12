@@ -1,24 +1,24 @@
-package enums;
+package com.barbearia.enums;
 
 public enum Perfil {
-
+	
 	CLIENTE(0, "ROLE CLIENTE"),
 	BARBEIRO(1, "ROLE BARBEIRO");
 	
-	private Integer codigo;
+	private Integer id;
 	private String descricao;
 	
-	private Perfil(Integer codigo, String descricao) {
-		this.codigo = codigo;
+	private Perfil(Integer id, String descricao) {
+		this.id = id;
 		this.descricao = descricao;
 	}
 
-	public Integer getCodigo() {
-		return codigo;
+	public Integer getId() {
+		return id;
 	}
 
-	public void setCodigo(Integer codigo) {
-		this.codigo = codigo;
+	public void setId(Integer id) {
+		this.id = id;
 	}
 
 	public String getDescricao() {
