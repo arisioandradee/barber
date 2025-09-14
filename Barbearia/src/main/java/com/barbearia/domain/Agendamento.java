@@ -3,6 +3,7 @@ package com.barbearia.domain;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
+import com.barbearia.dto.AgendamentoDTO;
 import com.barbearia.enums.Servicos;
 import com.barbearia.enums.Status;
 import com.fasterxml.jackson.annotation.JsonFormat;
@@ -38,6 +39,13 @@ public class Agendamento {
 	protected Servicos servico;
 	@Enumerated(EnumType.STRING)
 	protected Status status;
+	
+	public Agendamento(AgendamentoDTO objDto) {
+		this.dataAgendamento = objDto.getDataAgendamento();
+		this.observacoes = objDto.getObservacoes();
+		this.servico = objDto.getServico();
+		this.status = objDto.getStatus();
+	}
 	
 	public Agendamento(LocalDateTime dataAgendamento, String observacoes, Cliente cliente, Barbeiro barbeiro, Servicos servico, Status status) {
 		this.dataAgendamento = dataAgendamento;
